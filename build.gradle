@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.bdocyber'
+version '1.0'
+sourceCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Provided by Burp at runtime — do NOT fat-jar this (causes "not a recognized type")
+    compileOnly 'net.portswigger.burp.extensions:montoya-api:2023.10.2'
+    testImplementation 'net.portswigger.burp.extensions:montoya-api:2023.10.2'
+
+    implementation 'org.json:json:20220924'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveBaseName.set('DynamicsSLTrafficProcessor')
+    manifest {
+        attributes(
+                'Implementation-Title': 'DynamicsSLTrafficProcessor',
+                'Implementation-Version': version
+        )
+    }
+    // Fat-jar runtime libs only (json); never montoya-api
+    from {
+        configurations.runtimeClasspath.collect { dep ->
+            dep.isDirectory() ? dep : zipTree(dep)
+        }
+    }
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    exclude 'META-INF/*.EC'
+    exclude 'META-INF/MANIFEST.MF'
+    exclude 'module-info.class'
+    exclude 'META-INF/versions/**/module-info.class'
+}

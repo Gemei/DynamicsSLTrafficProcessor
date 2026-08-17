@@ -1,0 +1,113 @@
+# -----------------------------------------------------------------------------
+# Gradle
+# -----------------------------------------------------------------------------
+.gradle/
+**/build/
+!src/**/build/
+gradle-app.setting
+.gradletasknamecache
+
+# Keep wrapper so clones can build without a local Gradle install
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# -----------------------------------------------------------------------------
+# Build / compiled output
+# -----------------------------------------------------------------------------
+bin/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Built extension JAR (regenerate with ./gradlew jar / build.bat)
+build/libs/
+*.jar.original
+
+# Eclipse / IntelliJ / VS Code / NetBeans
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.factorypath
+nbproject/
+.nb-gradle/
+
+# -----------------------------------------------------------------------------
+# OS
+# -----------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -----------------------------------------------------------------------------
+# Local agent / tool state (not project source)
+# -----------------------------------------------------------------------------
+.grok/
+.cursor/
+.claude/
+*.swp
+*~
+
+# -----------------------------------------------------------------------------
+# Scratch / one-off local helpers (not part of the extension)
+# -----------------------------------------------------------------------------
+DumpCols.java
+DumpCols.class
+*.log
+*.tmp
+*.temp
+*.bak
+
+# Large protocol PDFs can be re-fetched; keep local only
+[MS-TDS]*.pdf
+*.pdf
+
+# -----------------------------------------------------------------------------
+# Captures / secrets / client data (never commit)
+# -----------------------------------------------------------------------------
+*.burp
+*.burp-backup
+captures/
+dumps/
+private/
+client/
+clients/
+secrets/
+*.pcap
+*.pcapng
+*.har
+*.sql
+*.env
+.env.*
+!.env.example
+
+# Unsanitized Burp XML / raw client exports
+**/*request*.txt
+**/*response*.txt
+**/Sample Requests*
+**/Sample Responses*
+**/Clients/**
+
+# Local TDS fixtures / capture samples (never publish)
+samples/
+**/samples/
+
+# Local override config that may hold real SQL hosts
+local.properties
+**/application-local.*
+)
